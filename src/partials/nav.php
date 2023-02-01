@@ -15,6 +15,7 @@
 					<button><a href="/index.php?page=login">Connexion</a></button>
 					
                     <button><a href="/index.php?page=deposit">Deposer</a></button>
+					<button><a href="/index.php?page=withdrawal">Retrait</a></button>
                     <!--
 					<button>Retrait</button>
 					<button formaction="virement.html">Virement</button>
