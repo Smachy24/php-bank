@@ -29,7 +29,6 @@ $data = $dbManager -> select($sql);
 var_dump($data);
 
 
-var_dump(in_array($_POST['currency'], $data));
 
 $currency_is_good = false;
 
