@@ -7,12 +7,13 @@ $page_titles = [
 	'login' => 'Se connecter',
 	'register' => 'S\'inscire',
     'dashboard_manager' => 'DashBoard Manager',
+    'withdrawal'=>'Faire un retrait'
 ];
 
 
 // -- Ensemble des pages possible -- //
 // pages accessibles si on est pas co
-$loggedout_pages = ['login', 'register'];
+$loggedout_pages = ['login', 'register','withdrawal'];
 // pages accessibles si on est co:
 $loggedin_pages = ['home'];
 // pages qui sont accessibles a tous
