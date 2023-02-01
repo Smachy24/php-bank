@@ -35,7 +35,7 @@ require_once __DIR__ . '/../partials/header.php'; ?>
                     <input type="password" name="cpassword" id="" placeholder="Saisissez votre mot de passe">
 
                     <button type="submit">Valider</button>
-                    <p class="info_input">Déjà un compte ? Cliquer <a href="login.php">ici</a></p>
+                    <p class="info_input">Déjà un compte ? Cliquer <a href="index.php?page=login">ici</a></p>
 
 
                 </form>

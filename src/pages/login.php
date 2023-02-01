@@ -16,7 +16,7 @@
                     <input type="password" name="password" id="" placeholder="Saisissez votre mot de passe">
 
                     <button type="submit">Se connecter</button>
-                    <p class="info_input">Pas de compte ? Cliquer <a href="register.php">ici</a></p>
+                    <p class="info_input">Pas de compte ? Cliquer <a href="index.php?page=register">ici</a></p>
 
                     
 
