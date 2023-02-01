@@ -1,2 +1,0 @@
-# php-bank
-TEST
