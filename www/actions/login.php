@@ -6,15 +6,15 @@ require_once __DIR__ . '/../../src/init.php';
 // Voir si les champs sont remplis
 
 if (!isset($_POST['email'], $_POST['password'])) {
-	// set_errors('⚠️ Formulaire incomplet', '/login.php');
-    echo "error";
+	set_errors('⚠️ Formulaire incomplet', '/../index.php?page=login');
+
 }
 
 // Verifie si l'email est valide
 
 if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
-	// set_errors('⚠️ Email invalide', '/login.php');
-    echo "error";
+	set_errors('⚠️ Email invalide', '/../index.php?page=login');
+
 }
 
 // hash le mdp
@@ -24,17 +24,17 @@ $password = hash('sha256', $_POST['password']);
 
 // regarde si il existe
 
-$query = $db->prepare('SELECT * FROM user WHERE email = ?');
-$query->execute([$_POST['email']]);
-$query->setFetchMode(PDO::FETCH_ASSOC);
-$user = $query->fetch();
+$user = $dbManager->select('SELECT * FROM user WHERE email = ?',[$_POST['email']]);
+var_dump($user);
+
 
 // regarde si le password correspond
 
-if ($user['password'] !== $password) {
-	//set_errors('⚠️ Le mot de passe est incorrect', '/login.php');
-    echo "error";
+if ($user[0]['password'] !== $password) {
+	set_errors('⚠️ Le mot de passe est incorrect', '/../index.php?page=login');
+
 }
 
 
-header('Location: /index.html');
+
+header('Location: /index.php?page=home');
