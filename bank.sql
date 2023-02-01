@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mer. 01 fév. 2023 à 10:17
+-- Généré le : mer. 01 fév. 2023 à 12:15
 -- Version du serveur : 5.7.36
 -- Version de PHP : 7.4.26
 
@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS `account` (
   `id_user` int(11) NOT NULL,
   `iban` varchar(100) COLLATE utf8_bin NOT NULL,
   `amount` decimal(10,0) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`account_id`),
   UNIQUE KEY `iban` (`iban`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -64,6 +65,7 @@ CREATE TABLE IF NOT EXISTS `deposit` (
   `id_user` int(11) NOT NULL,
   `id_currency` int(11) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`deposit_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -82,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `transaction` (
   `id_currency` int(11) NOT NULL,
   `type` varchar(100) COLLATE utf8_bin NOT NULL,
   `amount` decimal(10,0) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`transaction_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
@@ -98,6 +101,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `fullname` varchar(100) COLLATE utf8_bin NOT NULL,
   `email` varchar(100) COLLATE utf8_bin NOT NULL,
   `password` varchar(100) COLLATE utf8_bin NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -114,6 +118,7 @@ CREATE TABLE IF NOT EXISTS `withdrawal` (
   `id_user` int(11) NOT NULL,
   `id_currency` int(11) NOT NULL,
   `amount` decimal(10,0) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`withdrawal_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 COMMIT;
