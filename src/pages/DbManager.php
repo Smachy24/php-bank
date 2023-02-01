@@ -14,6 +14,15 @@ class DbManager {
 
     }
 
+    function select($sql){
+        $sth = $this->db->prepare($sql);
+        $sth->execute();
+        $sth->setFetchMode(PDO::FETCH_ASSOC);
+        $res = $sth-> fetchAll();
+
+        return $res;
+    }
+
 }
 
 ?>
