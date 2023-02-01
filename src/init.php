@@ -1,7 +1,11 @@
 <?php
 
-require_once __DIR__ . '/config.example.php';
+require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/db.php';
+
+require_once __DIR__ . '/pages/DbManager.php';
+
+$dbManager = new DbManager($db);
 
 $roles = [
     "admin"=>1000,
