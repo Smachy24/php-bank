@@ -11,7 +11,7 @@
                     <button><a href="/index.php?page=home">Acceuil</a></button>
                     <button><a href="/index.php?page=dashboard_manager">Manager</a></button>
 					<button><a href="/index.php?page=login">Logout</a></button>
-					
+					<button><a href="/index.php?page=register">Inscription</a></button>
 					<button><a href="/index.php?page=login">Connexion</a></button>
 					
                     <button><a href="/index.php?page=deposit">Deposer</a></button>

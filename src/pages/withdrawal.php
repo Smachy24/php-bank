@@ -1,7 +1,6 @@
 
 <body>
 
-
         <div id="real_body">
             <div id="retrait_back">
                 <form id="retrait" action="actions/withdrawal.php" method="post">
