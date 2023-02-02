@@ -66,4 +66,5 @@ $data = [1,$currency_id,$amount];
 
 $dbManager -> insert($sql, $data);
 
+
 ?>
