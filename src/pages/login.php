@@ -1,8 +1,15 @@
+<!-- recupération potentiel message d'erreur -->
 <?php
-/*if ($errors !== false) {
-	echo '<p>'.$errors.'</p>';
-}*/ ?>
+$errors = get_errors();
+?>
+
 <div id="real_body">
+            <!-- affichage d'un potentiel message d'erreur au dessus du form -->
+            <?php 
+                if ($errors !== false) {
+                    echo '<p>'.$errors.'</p>';
+            } ?>
+
             <div id="retrait_back03">
 
                 <form id="retrait" action="/actions/login.php" method="post">

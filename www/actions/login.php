@@ -1,6 +1,5 @@
 <?php
-
-require_once __DIR__ . '/../../src/init.php';
+	require_once __DIR__ . '/../../src/init.php';
 
 
 // Voir si les champs sont remplis
@@ -34,6 +33,25 @@ if ($user[0]['password'] !== $password) {
 	set_errors('⚠️ Le mot de passe est incorrect', '/../index.php?page=login');
 
 }
+
+$_SESSION['user_id'] = ($user[0]['user_id']);
+// echo "<br>";
+// var_dump($_SESSION);
+
+
+
+// // $_SESSION['user_id'] = ($user[0]['user_id']);
+// echo "<br>";
+// // var_dump($_SESSION);
+// $user['user_id'];
+// echo "<br>";
+// echo $user[0]['user_id'];
+// echo gettype($user[0]['user_id']); 
+
+// echo "<br>";
+// $_SESSION['user_id'] = ($user[0]['user_id']);
+// var_dump($_SESSION);
+
 
 
 
