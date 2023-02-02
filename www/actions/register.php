@@ -56,6 +56,7 @@ unset($_POST['cpassword']);
 $dbManager->insert('INSERT INTO user (role, fullname, email, password) VALUES(:role, :fullname, :email, :password)',$_POST);
 $_SESSION['user_id'] = $db->lastInsertId();
 
+
 function generateIban(){
 	$str = "FR";
 	for ($i=0;$i<25;$i++){
@@ -70,7 +71,6 @@ for($i=0;$i<3;$i++){
 	$data = [$i,$_SESSION['user_id'],generateIban(),0];
 	$dbManager->insert($sql, $data);
 }
-
 
 
 header('Location: /../index.php?page=home');

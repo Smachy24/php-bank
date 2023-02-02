@@ -19,21 +19,32 @@
                             </div>
 
                             <div class="infos_user">
-                                <p>RIB : <span id="rib">FR0298 73898 8779 8797 3232 67 84</span></p>
+
+                                <p>Mes soldes : 
+                                    <span id="euros">300<span> € |</span></span>
+                                    <span id="dollar">86<span> $ |</span></span>
+                                    <span id="bitcoin">0.243<span> ฿ </span></span>
+                                </p>
+
                                 <p>IBAN : <span id="iban">FR0298 73898 8779 8797 3232 67 84</span></p>
                             </div>
                         </div>
 
                         <div id="mon_activite">
+
+
+                            <p style="margin-left:2%">📊 <span class="span_titre_infos">Mes activitées :</span></p>
+
                             <table class="tableau-style">
 
-                            <thead>
-                                <tr>
-                                    <th>name_receiver</th>
-                                    <th>name_sender</th>
-                                    <th>name_currency</th>
-                                    <th>amount</th>
-                                    <th>datetime</th>
+                            <thead class="hight_table">
+                                <tr class="name_column">
+                                    <th>DESTINATAIRE</th>
+                                    <th>EXPÉDITEUR</th>
+                                    <th>DEVISE</th>
+                                    <th>MONTANT</th>
+                                    <th>DATE & HEURE</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -61,7 +72,9 @@
 
 
                             foreach ($result as $row) {
-                            echo '<tr>
+
+                            echo '<tr class="tableau_bas">
+
                                     <th> ' . $row["name_receiver"] . '  </th>
                                     <th> ' . $row["name_sender"] . ' </th>
                                     <th> ' . $row["name_currency"] . ' </th>
@@ -69,8 +82,10 @@
                                     <th> ' . $row["date"] . ' </th>
                                 </tr>';
                          }
-        ?>
-</form>
+
+                                ?>
+                        </form>
+
                             </tbody>
 
                             </table>
