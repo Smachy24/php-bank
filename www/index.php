@@ -7,7 +7,9 @@ $page_titles = [
 	'login' => 'Se connecter',
 	'register' => 'S\'inscire',
     'dashboard_manager' => 'DashBoard Manager',
+
     'dashboard_admin' => 'DashBoard Admin',
+
     'deposit'=>"Dépôt",
     'withdrawal'=>"Retrait",
     'account' => "Mon compte",
@@ -25,7 +27,9 @@ $everyone_pages = [];
 // pages qui sont uniquement accessibles aux managers et admins
 $manager_pages = ['dashboard_manager'];
 // pages qui sont uniquement accessibles aux admins
+
 $admin_pages = ['dashboard_admin'];
+
 
 //Si on arrive sur l'index.php en brut on evite les erreurs lié au fait qu'il n'y ait aucun parametre d'url
 if (!isset($_GET['page']))
@@ -69,3 +73,5 @@ require_once __DIR__ . '/../src/partials/header.php';
 	<?php require_once __DIR__ . '/../src/partials/footer.php'; ?>
 </body>
 </html>
+
+

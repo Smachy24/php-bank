@@ -1,4 +1,6 @@
+
 <div id="real_body">
+
             <div id="retrait_back">
                 <form id="retrait" action="actions/deposit.php" method="post">
 
@@ -17,3 +19,4 @@
                 </form>
             </div>
         </div>
+
