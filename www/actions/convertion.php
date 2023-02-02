@@ -54,7 +54,7 @@ if(!is_numeric($_POST['amount'])){
 $_POST['currency'] = strtoupper($_POST['currency']);
 $_POST['new_currency'] = strtoupper($_POST['new_currency']);
 
-$sql = "SELECT * FROM Currency";
+$sql = "SELECT * FROM currency";
 $currency_data = $dbManager -> select($sql, []);
 
 $currency_is_good = false;
@@ -78,7 +78,7 @@ if(!$currency_is_good || !$new_currency_is_good){
 
 //--Verifier si dans le premier compte (celui où on va retirer l'argent), on a plus d'argent que l'input saisi
 
-$sql = "SELECT amount FROM Account WHERE id_currency = ? AND id_user = 1";
+$sql = "SELECT amount FROM account WHERE id_currency = ? AND id_user = 1";
 $total_amount = $dbManager->select($sql,[$currency_id]);
 var_dump($total_amount);
 
@@ -94,7 +94,7 @@ $amount = $_POST["amount"];
 
 //-- Verifier si le deuxieme compte avec la monnaie du 2eme input currency existe
 
-$sql = "SELECT account_id,amount FROM Account WHERE id_currency = ? AND id_user = 1";
+$sql = "SELECT account_id,amount FROM account WHERE id_currency = ? AND id_user = 1";
 $second_account = $dbManager->select($sql,[$new_currency_id]);
 
 if(!$second_account){
@@ -103,7 +103,7 @@ if(!$second_account){
 
 //-- Faire une premiere transaction de depot
 
-$sql = "INSERT INTO Transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
+$sql = "INSERT INTO transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
 VALUES (?,?,?,?,?,?)";
 $data = [1,1,-1, $currency_id, "depos", $amount];
 
@@ -111,7 +111,7 @@ $dbManager -> insert($sql, $data);
 
 //-- Faire une deuxieme transaction de depos
 
-$sql = "INSERT INTO Transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
+$sql = "INSERT INTO transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
 VALUES (?,?,?,?,?,?)";
 $data = [1,1,-1, $new_currency_id, "retrait", $amount * $new_currency_value ];
 
