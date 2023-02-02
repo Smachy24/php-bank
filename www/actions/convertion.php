@@ -78,15 +78,15 @@ if(!$currency_is_good || !$new_currency_is_good){
 
 //--Verifier si dans le premier compte (celui où on va retirer l'argent), on a plus d'argent que l'input saisi
 
-$sql = "SELECT amount FROM account WHERE id_currency = ? AND id_user = 1";
-$total_amount = $dbManager->select($sql,[$currency_id]);
-var_dump($total_amount);
+$sql = "SELECT account_id,amount FROM account WHERE id_currency = ? AND id_user = 1";
+$first_account = $dbManager->select($sql,[$currency_id]);
+var_dump($first_account);
 
-if(!$total_amount){
+if(!$first_account){
     echo "Vous n'avez pas de compte avec cette devise";
 }
 
-if($total_amount[0]["amount"]<$_POST["amount"]){
+if($first_account[0]["amount"]<$_POST["amount"]){
     echo "Vous n'avez pas assez d'argent";
 }
 
@@ -123,8 +123,20 @@ $sql = "UPDATE Account
 SET amount = ?
 WHERE account_id = ?";
 
+$data = [$first_account[0]["amount"] - $amount ,$first_account[0]["account_id"]];
+
+$dbManager->update($sql, $data);
+
+// Faire une requete qui ajoute de l'argent
+
+$sql = "UPDATE Account
+SET amount = ?
+WHERE account_id = ?";
+
 var_dump($second_account);
 
-$data = [$total_amount[0]["amount"] - $amount ,$second_account[0]["account_id"]];
+$data = [$second_account[0]["amount"] + $amount * $new_currency_value ,$second_account[0]["account_id"]];
+
+$dbManager->update($sql, $data);
 
 ?>
