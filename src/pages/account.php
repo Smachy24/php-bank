@@ -20,13 +20,29 @@
 
                             <div class="infos_user">
 
+                            <?php
+                        
+                            $sql=  "SELECT * FROM account WHERE id_user = ?";
+                            $options = [1];
+                            $res = $dbManager->select($sql, $options);
+
+                            ?>
+
                                 <p>Mes soldes : 
-                                    <span id="euros">300<span> € |</span></span>
-                                    <span id="dollar">86<span> $ |</span></span>
-                                    <span id="bitcoin">0.243<span> ฿ </span></span>
+                                    <span id="euros"><?php echo $res[0]["amount"]; ?><span> € |</span></span>
+                                    <span id="dollar"><?php echo $res[1]["amount"]; ?><span> $ |</span></span>
+                                    <span id="bitcoin"><?php echo $res[2]["amount"]; ?><span> ฿ </span></span>
                                 </p>
 
-                                <p>IBAN : <span id="iban">FR0298 73898 8779 8797 3232 67 84</span></p>
+                                <?php
+
+                                $sql = "SELECT iban FROM account WHERE id_user = ?";
+                                $options = [1];
+                                $res = $dbManager->select($sql, $options);
+
+                                ?>
+
+                                <p>IBAN : <span id="iban"><?php echo $res[0]["iban"]; ?></span></p>
                             </div>
                         </div>
 
