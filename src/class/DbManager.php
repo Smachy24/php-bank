@@ -11,7 +11,6 @@ class DbManager {
     function insert(string $sql, array $data){
         $sth = $this->db->prepare($sql);
         $sth->execute($data);
-
     }
 
     function select($sql, $data){
@@ -28,6 +27,10 @@ class DbManager {
         return $res;
     }
 
+    function update(string $sql, array $data){
+        $sth = $this->db->prepare($sql);
+        $sth->execute($data);
+    }
 }
 
 ?>
