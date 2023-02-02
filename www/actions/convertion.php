@@ -101,11 +101,11 @@ if(!$second_account){
     echo "Vous n'avez pas de compte avec cette devise";
 }
 
-//-- Faire une premiere transaction de depot
+//-- Faire une premiere transaction de retrait
 
 $sql = "INSERT INTO transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
 VALUES (?,?,?,?,?,?)";
-$data = [1,1,-1, $currency_id, "deposit", $amount];
+$data = [1,1,-1, $currency_id, "withdrawal", $amount];
 
 $dbManager -> insert($sql, $data);
 
@@ -113,7 +113,7 @@ $dbManager -> insert($sql, $data);
 
 $sql = "INSERT INTO transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
 VALUES (?,?,?,?,?,?)";
-$data = [1,1,-1, $new_currency_id, "withdrawal", $amount * $new_currency_value ];
+$data = [1,1,-1, $new_currency_id, "deposit", $amount * $new_currency_value ];
 
 $dbManager -> insert($sql, $data);
 
