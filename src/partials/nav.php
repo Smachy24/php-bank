@@ -14,9 +14,9 @@
 					<button><a class="menu_a" href="/actions/logout.php">Logout</a></button>
 					<button><a class="menu_a" href="/index.php?page=register">Inscription</a></button>
 					<button><a class="menu_a" href="/index.php?page=login">Connexion</a></button>
-					
                     <button><a class="menu_a" href="/index.php?page=deposit">Deposer</a></button>
 					<button><a class="menu_a" href="/index.php?page=withdrawal">Retrait</a></button>
+                    <button><a class="menu_a" href="/index.php?page=convertion">Convertion</a></button>
                     <!--
 					<button>Retrait</button>
 					<button formaction="virement.html">Virement</button>
