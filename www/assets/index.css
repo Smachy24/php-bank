@@ -554,26 +554,24 @@ body {
     scale: 0.95;
 }
 
+.tableau_bas02 th {
+    width: 200px;
+    font-weight: lighter;
+    color: white;
+    font-weight: bold;
+    border: solid 0.5px;
 
-
-.table {
-    width: 1000px;
-    border-spacing: 0;
+    border-color: white;
 }
 
-.tbody, .thead tr { display: block; }
-
 .tbody {
+    display: block;
     height: 100px;
     overflow-y: auto;
     overflow-x: hidden;
 }
 
-.tbody td, thead th {
-    width: 140px;
-}
-
-.thead th:last-child {
+.hight_table {
     width: 1000px;
 }
 

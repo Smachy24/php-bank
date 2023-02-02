@@ -76,8 +76,8 @@
                                     <th> ' . $row["date"] . ' </th>
                                 </tr>';
                          }
-        ?>
-</form>
+                                ?>
+                        </form>
                             </tbody>
 
                             </table>
