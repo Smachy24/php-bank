@@ -16,7 +16,7 @@ $page_titles = [
 
 // -- Ensemble des pages possible -- //
 // pages accessibles si on est pas co
-$loggedout_pages = ['login', 'register'];
+$loggedout_pages = ['login', 'register','withdrawal'];
 // pages accessibles si on est co:
 $loggedin_pages = ['home', 'deposit', 'withdrawal', 'account', 'convertion'];
 // pages qui sont accessibles a tous
