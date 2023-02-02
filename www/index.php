@@ -8,7 +8,8 @@ $page_titles = [
 	'register' => 'S\'inscire',
     'dashboard_manager' => 'DashBoard Manager',
     'deposit'=>"Dépôt",
-    'withdrawal'=>"Retrait"
+    'withdrawal'=>"Retrait",
+    'account' => "Mon compte"
 ];
 
 
@@ -16,7 +17,7 @@ $page_titles = [
 // pages accessibles si on est pas co
 $loggedout_pages = ['login', 'register'];
 // pages accessibles si on est co:
-$loggedin_pages = ['home', 'deposit', 'withdrawal'];
+$loggedin_pages = ['home', 'deposit', 'withdrawal', 'account'];
 // pages qui sont accessibles a tous
 $everyone_pages = [];
 // pages qui sont uniquement accessibles aux managers et admins
