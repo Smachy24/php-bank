@@ -50,7 +50,7 @@ $amount = $_POST['amount'];
 
 // On modifie l'argent de l'utilisateur
 
-// $sql = "UPDATE Account SET amount = ? WHERE id_currency = \" ? \" AND id_user = ?";
+// $sql = "UPDATE Account SET amount = ? WHERE id_currency =  ?  AND id_user = ?";
 // $dbManager->update($sql,[$user_money+$_POST['amount'],$currency_id, 1]);
 
 
