@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/../../src/init.php';
 
+
+//Verification du formulaire
 if(!isset($_POST["currency"]) || !isset($_POST["amount"])){
     echo "Formulaire non reçu";
 }
@@ -20,30 +22,42 @@ if(!is_numeric($_POST['amount'])){
     echo "Quantite n'est pas une valeur valide";
 }
 
-$sql = "SELECT name FROM Currency";
+//Verification si la monnaie existe
+
+$sql = "SELECT currency_id,name FROM Currency";
 $data = $dbManager -> select($sql, []);
 var_dump($data);
-
-
 
 $currency_is_good = false;
 
 foreach($data as $array){
     if($array["name"]==$_POST['currency']){
         $currency_is_good = true;
+        $currency_id = $array["currency_id"];
+        break;
     }
 }
-
 if(!$currency_is_good){
     echo "Monnaie inexistante";
 }
 
 //Verifier que l'utilisateur a assez d'argent
 
-$sql = "SELECT amount FROM Account JOIN Currency on Account.id_currency = 
-Currency.currency_id WHERE Currency.name = \" ? \"";
-$res = $dbManager->select($sql,$_POST["currency"]);
-var_dump($res);
+$sql = "SELECT amount FROM Account WHERE id_currency = ? AND id_user = 1";
 
+$amount = $dbManager->select($sql,[$currency_id]);
+var_dump($amount);
+
+if($amount[0]["amount"]<$_POST["amount"]){
+    echo "Vous n'avez pas assez d'argent";
+}
+
+$amount = $amount[0]["amount"];
+
+// On insère une nouvelle ligne dans la table Withdraw
+$sql = "INSERT INTO Withdrawal(id_user,id_currency,amount) VALUES (?, ?, ?)";
+$data = [1,$currency_id,$amount];
+
+//$dbManager -> insert($sql, $data);
 
 ?>
