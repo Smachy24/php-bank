@@ -24,6 +24,8 @@ if(!is_numeric($_POST['amount'])){
 //On vérifie si la monnaie saisie par l'user existe
 //On récupère l'id aussi pour la suite
 
+$_POST['currency'] = strtoupper($_POST['currency']);
+
 $sql = "SELECT currency_id, name FROM Currency";
 $data = $dbManager -> select($sql, []);
 
@@ -38,28 +40,30 @@ foreach($data as $array){
 if(!$currency_is_good){
     echo "Monnaie inexistante";
 }
-else{
 
-    //On récupère l'argent du compte de l'user
+$amount = $_POST['amount'];
+//On récupère l'argent du compte de l'user
 
-    $sql = "SELECT amount FROM Account WHERE id_currency = \" ? \" AND id_user = ?";
-    $user_money = $dbManager->select($sql,[$currency_id, 1]);
-    var_dump($user_money);
+// $sql = "SELECT amount FROM Account WHERE id_currency =  ?  AND id_user = ?";
+// $user_money = $dbManager->select($sql,[$currency_id, 1]);
 
-    //On modifie l'argent de l'utilisateur
-    $sql = "UPDATE Account SET amount = ? WHERE id_currency = \" ? \" AND id_user = ?";
-    $dbManager->update($sql,[$user_money+$_POST['amount'],$currency_id, 1]);
-    
 
-    // On insère une nouvelle ligne dans la table Deposit
-    $sql = "INSERT INTO Deposit(id_user,id_currency,amount) VALUES (?, ?, ?)";
-    $data = [1,$currency_id,$_POST['amount']];
+// On modifie l'argent de l'utilisateur
 
-    //$dbManager -> insert($sql, $data);
+// $sql = "UPDATE Account SET amount = ? WHERE id_currency = \" ? \" AND id_user = ?";
+// $dbManager->update($sql,[$user_money+$_POST['amount'],$currency_id, 1]);
 
 
 
-}
+
+// On insère une nouvelle ligne dans la table Deposit
+$sql = "INSERT INTO Deposit(id_user,id_currency,amount) VALUES (?, ?, ?)";
+$data = [1,$currency_id,$amount];
+$dbManager -> insert($sql, $data);
+
+
+
+
 
 
 

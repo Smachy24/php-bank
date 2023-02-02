@@ -12,6 +12,11 @@ require_once __DIR__ . '/class/DbManager.php';
 
 $dbManager = new DbManager($db);
 
+require_once __DIR__ . '/class/DbManager.php';
+
+$dbManager = new DbManager($db);
+
+
 $roles = [
     "admin"=>1000,
     "manager"=>200,

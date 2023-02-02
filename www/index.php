@@ -9,15 +9,16 @@ $page_titles = [
     'dashboard_manager' => 'DashBoard Manager',
     'deposit'=>"Dépôt",
     'withdrawal'=>"Retrait",
-    'account' => "Mon compte"
+    'account' => "Mon compte",
+    'convertion' =>"Convertir ma monnaie"
 ];
 
 
 // -- Ensemble des pages possible -- //
 // pages accessibles si on est pas co
-$loggedout_pages = ['login', 'register'];
+$loggedout_pages = ['login', 'register','withdrawal'];
 // pages accessibles si on est co:
-$loggedin_pages = ['home', 'deposit', 'withdrawal', 'account'];
+$loggedin_pages = ['home', 'deposit', 'withdrawal', 'account', 'convertion'];
 // pages qui sont accessibles a tous
 $everyone_pages = [];
 // pages qui sont uniquement accessibles aux managers et admins
@@ -60,6 +61,13 @@ $page_title = $page_titles[$page];
 //import <head>
 require_once __DIR__ . '/../src/partials/header.php'; 
 ?>
+
+<body>
+    <?php require_once __DIR__ . '/../src/partials/nav.php'; ?>
+    <?php require_once __DIR__ . '/../src/pages/' . $page . '.php'; ?>
+	<?php require_once __DIR__ . '/../src/partials/footer.php'; ?>
+</body>
+</html>
 
 <body>
     <?php require_once __DIR__ . '/../src/partials/nav.php'; ?>
