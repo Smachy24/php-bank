@@ -15,8 +15,9 @@
 <h1>Pannel Manager</h1>
 <h3> Bonjour Manager <?php echo $user['fullname']; ?> ! </h3>
 
+    <h2>tableau demande de dépot</h2>
     <?php gen_table_structure("deposit") ?>
-    <br>
-    <?php //gen_table_structure("withdrawal") ?>
+    <h2>tableau demande de retrait</h2>
+    <?php gen_table_structure("withdrawal") ?>
 
 
