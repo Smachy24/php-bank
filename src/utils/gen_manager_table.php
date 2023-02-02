@@ -1,4 +1,3 @@
-
 <?php 
 
     function gen_table_structure($myTable)
@@ -29,50 +28,26 @@
     }
     
 
-
     function gen_table_content($myTable)
     {
-        echo "la fonction a été appelé";
+        //echo "la fonction a été appelé";
         global $db;
         global $dbManager;        
 
-        switch ($myTable)
-        {
-            case "deposit":
-                $sql = 'SELECT deposit.deposit_id, user.fullname,currency.name,deposit.amount,deposit.date
-                FROM deposit
+        $sql = 'SELECT '.$myTable.'.'.$myTable.'_id, user.fullname,currency.name,'.$myTable.'.amount,'.$myTable.'.date
+                FROM '.$myTable.'
                 JOIN currency
-                ON deposit.id_currency = currency.currency_id
+                ON '.$myTable.'.id_currency = currency.currency_id
                 JOIN user
-                ON deposit.id_user = user.user_id
-                ORDER BY date DESC';
-                break;
-                
-
-            case "withdrawal":
-                $sql = 'SELECT withdrawal.withdrawal_id, user.fullname,currency.name,withdrawal.amount,withdrawal.date
-                FROM withdrawal
-                JOIN currency
-                ON withdrawal.id_currency = currency.currency_id
-                JOIN user
-                ON withdrawal.id_user = user.user_id
-                ORDER BY date DESC';
-                break;
-
-
-            case "modulaire":
-                break;
-
-
-
-        }
+                ON '.$myTable.'.id_user = user.user_id
+                ORDER BY date';
 
 
         $req = $db->prepare($sql);
         $req->execute();
         $result = $req->fetchAll();
         
-        var_dump($result);
+        //var_dump($result);
 
         foreach ($result as $row) {
             echo '<tr>
@@ -80,8 +55,8 @@
                     <th> ' . $row["name"] . ' </th>
                     <th> ' . $row["amount"] . ' </th>
                     <th> ' . $row["date"] . ' </th>
-                    <th> <a href="/actions/accept_transaction.php?id_transaction='. $row['deposit_id'] .'"> valider </a> </th>
-                    <th> <a href="/actions/refuse_transaction.php?id_transaction='. $row['deposit_id'] .'"> Refuse </a> </th>
+                    <th> <a href="/actions/accept_transaction.php?id_transaction='. $row[$myTable . '_id'] .'&type_transaction='. $myTable .'"> valider </a> </th>
+                    <th> <a href="/actions/delete_transaction.php?id_transaction='. $row[$myTable . '_id'] .'&type_transaction='. $myTable .'"> Refuse </a> </th>
                 </tr>';
         }    
     }
