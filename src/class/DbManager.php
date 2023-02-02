@@ -11,12 +11,16 @@ class DbManager {
     function insert(string $sql, array $data){
         $sth = $this->db->prepare($sql);
         $sth->execute($data);
-
     }
 
-    function select($sql){
+    function select($sql, $data){
         $sth = $this->db->prepare($sql);
-        $sth->execute();
+        if($data){
+            $sth->execute($data);
+        }else{
+            $sth->execute();
+        }
+        
         $sth->setFetchMode(PDO::FETCH_ASSOC);
         $res = $sth-> fetchAll();
 
@@ -26,9 +30,7 @@ class DbManager {
     function update(string $sql, array $data){
         $sth = $this->db->prepare($sql);
         $sth->execute($data);
-
     }
-
 }
 
 ?>

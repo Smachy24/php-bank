@@ -25,7 +25,7 @@ if(!is_numeric($_POST['amount'])){
 //On récupère l'id aussi pour la suite
 
 $sql = "SELECT currency_id, name FROM Currency";
-$data = $dbManager -> select($sql);
+$data = $dbManager -> select($sql, []);
 
 $currency_is_good = false;
 foreach($data as $array){
