@@ -11,12 +11,12 @@ require_once __DIR__ . '/../partials/header.php'; ?>
 
     <?php require_once __DIR__ . '/../partials/nav.php'; ?>
     
-    <?php
-	if ($errors !== false) {
-		echo '<p>'.$errors.'</p>';
-	} ?>
 
 	<div id="real_body">
+            <?php
+            if ($errors !== false) {
+                echo '<p>'.$errors.'</p>';
+            } ?>
             <div id="retrait_back05">
                 <form id="retrait" action="/actions/register.php" method="post">
 

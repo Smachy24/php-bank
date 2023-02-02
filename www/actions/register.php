@@ -54,5 +54,6 @@ $_POST['role'] = 1;
 unset($_POST['cpassword']);
 
 $dbManager->insert('INSERT INTO user (role, fullname, email, password) VALUES(:role, :fullname, :email, :password)',$_POST);
+$_SESSION['user_id'] = $db->lastInsertId();
 
-header('Location: /../index.php?page=login');
+header('Location: /../index.php?page=home');
