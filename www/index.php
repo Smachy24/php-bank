@@ -68,3 +68,10 @@ require_once __DIR__ . '/../src/partials/header.php';
 	<?php require_once __DIR__ . '/../src/partials/footer.php'; ?>
 </body>
 </html>
+
+<body>
+    <?php require_once __DIR__ . '/../src/partials/nav.php'; ?>
+    <?php require_once __DIR__ . '/../src/pages/' . $page . '.php'; ?>
+	<?php require_once __DIR__ . '/../src/partials/footer.php'; ?>
+</body>
+</html>
