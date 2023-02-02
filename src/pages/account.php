@@ -34,7 +34,15 @@
                                     <span id="bitcoin"><?php echo $res[2]["amount"]; ?><span> ฿ </span></span>
                                 </p>
 
-                                <p>IBAN : <span id="iban">FR0298 73898 8779 8797 3232 67 84</span></p>
+                                <?php
+
+                                $sql = "SELECT iban FROM account WHERE id_user = ?";
+                                $options = [1];
+                                $res = $dbManager->select($sql, $options);
+
+                                ?>
+
+                                <p>IBAN : <span id="iban"><?php echo $res[0]["iban"]; ?></span></p>
                             </div>
                         </div>
 
