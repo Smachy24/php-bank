@@ -1,15 +1,10 @@
 <?php 
-require_once __DIR__ . '/../init.php';
-
 
 $errors = get_errors();
-
-
-$page_title = 'convertion';
-require_once __DIR__ . '/../partials/header.php'; ?>
+ ?>
 <body>
 
-    <?php require_once __DIR__ . '/../partials/nav.php'; ?>
+    
     
 
 	<div id="real_body">
@@ -45,21 +40,21 @@ require_once __DIR__ . '/../partials/header.php'; ?>
                     
                 </div>
 
-                <form id="retrait" action=, method="post">
+                <form id="retrait" action="actions/convertion.php" method="post">
 
                     <p id="titre_retrait">🔀 Convertissez votre monnaie</p>
                     
                     <p class="info_input">Je convertis</p>
 
                     <div class="devise01">
-                        <input type="text" name="" id="montant" placeholder="20">
-                        <input type="text" name="currency_to" id="devise" placeholder="Devise">
+                        <input type="text" name="amount" id="montant" placeholder="20">
+                        <input type="text" name="currency" id="devise" placeholder="Devise">
                     </div>
                     
                     
                     <p class="info_input">Dans la devise :</p>
 
-                    <input type="text" name="to_currency" id="" placeholder="EUROS - DOLLAR - BITCOIN">
+                    <input type="text" name="new_currency" id="" placeholder="EUROS - DOLLAR - BITCOIN">
                     
                     <p class="info_input">Confirmer votre mot de passe</p>
                     <input type="password" name="password" id="" placeholder="Saisissez votre mot de passe">
@@ -69,7 +64,5 @@ require_once __DIR__ . '/../partials/header.php'; ?>
                 </form>
             </div>
         </div>
-
-	<?php require_once __DIR__ . '/../partials/footer.php'; ?>
 </body>
 </html>
