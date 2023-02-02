@@ -26,7 +26,7 @@ if(!is_numeric($_POST['amount'])){
 
 $_POST['currency'] = strtoupper($_POST['currency']);
 
-$sql = "SELECT currency_id,name FROM Currency";
+$sql = "SELECT currency_id,name FROM currency";
 $data = $dbManager -> select($sql, []);
 // var_dump($data);
 
@@ -45,7 +45,7 @@ if(!$currency_is_good){
 
 //Verifier que l'utilisateur a assez d'argent
 
-$sql = "SELECT amount FROM Account WHERE id_currency = ? AND id_user = 1";
+$sql = "SELECT amount FROM account WHERE id_currency = ? AND id_user = 1";
 
 $total_amount = $dbManager->select($sql,[$currency_id]);
 // var_dump($amount);
@@ -61,7 +61,7 @@ if($total_amount[0]["amount"]<$_POST["amount"]){
 $amount = $_POST["amount"];
 
 // On insère une nouvelle ligne dans la table Withdraw
-$sql = "INSERT INTO Withdrawal(id_user,id_currency,amount) VALUES (?, ?, ?)";
+$sql = "INSERT INTO withdrawal(id_user,id_currency,amount) VALUES (?, ?, ?)";
 $data = [1,$currency_id,$amount];
 
 $dbManager -> insert($sql, $data);

@@ -26,7 +26,7 @@ if(!is_numeric($_POST['amount'])){
 
 $_POST['currency'] = strtoupper($_POST['currency']);
 
-$sql = "SELECT currency_id, name FROM Currency";
+$sql = "SELECT currency_id, name FROM currency";
 $data = $dbManager -> select($sql, []);
 
 $currency_is_good = false;
@@ -57,7 +57,7 @@ $amount = $_POST['amount'];
 
 
 // On insère une nouvelle ligne dans la table Deposit
-$sql = "INSERT INTO Deposit(id_user,id_currency,amount) VALUES (?, ?, ?)";
+$sql = "INSERT INTO deposit(id_user,id_currency,amount) VALUES (?, ?, ?)";
 $data = [1,$currency_id,$amount];
 $dbManager -> insert($sql, $data);
 
