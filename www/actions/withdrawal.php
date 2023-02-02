@@ -24,9 +24,11 @@ if(!is_numeric($_POST['amount'])){
 
 //Verification si la monnaie existe
 
+$_POST['currency'] = strtoupper($_POST['currency']);
+
 $sql = "SELECT currency_id,name FROM Currency";
 $data = $dbManager -> select($sql, []);
-var_dump($data);
+// var_dump($data);
 
 $currency_is_good = false;
 
@@ -45,19 +47,23 @@ if(!$currency_is_good){
 
 $sql = "SELECT amount FROM Account WHERE id_currency = ? AND id_user = 1";
 
-$amount = $dbManager->select($sql,[$currency_id]);
-var_dump($amount);
+$total_amount = $dbManager->select($sql,[$currency_id]);
+// var_dump($amount);
 
-if($amount[0]["amount"]<$_POST["amount"]){
+if(!$total_amount){
+    echo "Vous n'avez pas de compte avec cette devise";
+}
+
+if($total_amount[0]["amount"]<$_POST["amount"]){
     echo "Vous n'avez pas assez d'argent";
 }
 
-$amount = $amount[0]["amount"];
+$amount = $_POST["amount"];
 
 // On insère une nouvelle ligne dans la table Withdraw
 $sql = "INSERT INTO Withdrawal(id_user,id_currency,amount) VALUES (?, ?, ?)";
 $data = [1,$currency_id,$amount];
 
-//$dbManager -> insert($sql, $data);
+$dbManager -> insert($sql, $data);
 
 ?>
