@@ -105,7 +105,7 @@ if(!$second_account){
 
 $sql = "INSERT INTO Transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
 VALUES (?,?,?,?,?,?)";
-$data = [1,1,-1, $currency_id, "depos", $amount];
+$data = [1,1,-1, $currency_id, "deposit", $amount];
 
 $dbManager -> insert($sql, $data);
 
@@ -113,7 +113,7 @@ $dbManager -> insert($sql, $data);
 
 $sql = "INSERT INTO Transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
 VALUES (?,?,?,?,?,?)";
-$data = [1,1,-1, $new_currency_id, "retrait", $amount * $new_currency_value ];
+$data = [1,1,-1, $new_currency_id, "withdrawal", $amount * $new_currency_value ];
 
 $dbManager -> insert($sql, $data);
 
