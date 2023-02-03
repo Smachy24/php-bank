@@ -45,9 +45,9 @@ if(!$currency_is_good){
 
 //Verifier que l'utilisateur a assez d'argent
 
-$sql = "SELECT amount FROM account WHERE id_currency = ? AND id_user = 1";
+$sql = "SELECT amount FROM account WHERE id_currency = ? AND id_user = ?";
 
-$total_amount = $dbManager->select($sql,[$currency_id]);
+$total_amount = $dbManager->select($sql,[$currency_id, $_SESSION['user_id']]);
 // var_dump($amount);
 
 if(!$total_amount){
@@ -62,7 +62,7 @@ $amount = $_POST["amount"];
 
 // On insère une nouvelle ligne dans la table Withdraw
 $sql = "INSERT INTO withdrawal(id_user,id_currency,amount) VALUES (?, ?, ?)";
-$data = [1,$currency_id,$amount];
+$data = [$_SESSION['user_id'],$currency_id,$amount];
 
 $dbManager -> insert($sql, $data);
 

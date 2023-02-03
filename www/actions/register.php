@@ -65,7 +65,7 @@ function generateIban(){
 	return $str;
 }
 
-for($i=0;$i<3;$i++){
+for($i=1;$i<4;$i++){
 	$sql = "INSERT INTO account(id_currency,id_user,iban,amount)
 	VALUES (?,?,?,?)";
 	$data = [$i,$_SESSION['user_id'],generateIban(),0];
