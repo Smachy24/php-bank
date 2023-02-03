@@ -14,7 +14,6 @@
                     <th>Date demande</th>
                 </tr>
             </thead>
-
             <tbody class="tbody">
          ';
 
@@ -89,7 +88,6 @@
     }
 
 ?>
-
 
 
 
