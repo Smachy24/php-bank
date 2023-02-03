@@ -58,11 +58,12 @@ $amount = $_POST['amount'];
 
 // On insère une nouvelle ligne dans la table Deposit
 $sql = "INSERT INTO deposit(id_user,id_currency,amount) VALUES (?, ?, ?)";
-$data = [1,$currency_id,$amount];
+$data = [$_SESSION['user_id'],$currency_id,$amount];
 $dbManager -> insert($sql, $data);
 
 
 
+header('Location: /../index.php?page=deposit');
 
 
 
