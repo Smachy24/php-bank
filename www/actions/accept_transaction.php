@@ -5,6 +5,14 @@
 <?php 
 
 require_once __DIR__ . '/../../src/init.php';
+
+//vérifier si user est un manager ou admin
+if ($user['role'] <= 200) {
+    header('Location: /index.php?page=home');
+    die();
+}
+
+
 $myTable = $_GET['type_transaction'];
 $type_transaction = $_GET['type_transaction'];
 $id_transaction = $_GET['id_transaction'];
