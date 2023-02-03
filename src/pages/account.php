@@ -23,7 +23,7 @@
                             <?php
                         
                             $sql=  "SELECT * FROM account WHERE id_user = ?";
-                            $options = [1];
+                            $options = [$_SESSION['user_id']];
                             $res = $dbManager->select($sql, $options);
 
                             ?>
@@ -37,7 +37,7 @@
                                 <?php
 
                                 $sql = "SELECT iban FROM account WHERE id_user = ?";
-                                $options = [1];
+                                $options = [$_SESSION['user_id']];
                                 $res = $dbManager->select($sql, $options);
 
                                 ?>
