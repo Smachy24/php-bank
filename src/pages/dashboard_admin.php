@@ -11,7 +11,7 @@
                     <form id="retrait" action="">
 
                         <p id="hello">🤖 Panneau Administrateur</p>
-                        <p id="titre_retrait02">Connecté en tant que : Utilisateur</p>
+                        <p id="titre_retrait02">Connecté en tant que : <span style="color:white; text-decoration=none"><?php echo $user['fullname']; ?></span></p>
 
                         
 
