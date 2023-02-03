@@ -132,6 +132,6 @@ $sql = "UPDATE account SET amount = ? WHERE id_currency =  ?  AND id_user = ?";
 $dbManager->update($sql,[$total_amount - $amount ,$currency_id, $_SESSION['user_id'] ]);
 
 
-
+set_errors("Transfert bien effectué !", '/../index.php?page=transfer');
 
 ?>
