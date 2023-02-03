@@ -6,7 +6,7 @@ Marco STOJANOVIC
 Mathis RENAUDIN
 Khaled KOUADRIA 
 
-## Groupe
+## Installation
 
 Modifier fichier config.php par rapport à votre config
 
