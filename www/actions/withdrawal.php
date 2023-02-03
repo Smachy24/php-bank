@@ -5,22 +5,22 @@ require_once __DIR__ . '/../../src/init.php';
 
 //Verification du formulaire
 if(!isset($_POST["currency"]) || !isset($_POST["amount"])){
-    echo "Formulaire non reçu";
+    set_errors("⚠️Formulaire non reçu", '/../index.php?page=withdrawal');
 }
 
 if(empty($_POST["currency"])){
-    echo "Monnaie invalide";
+    set_errors("⚠️Monnaie invalide", '/../index.php?page=withdrawal');
 }
 
 if(empty($_POST["amount"])){
-    echo "Quantite invalide";
+    set_errors("⚠️Quantite invalide", '/../index.php?page=withdrawal');
 }
 
 
 $_POST['currency'] = htmlentities($_POST['currency'],  ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5);
 
 if(!is_numeric($_POST['amount'])){
-    echo "Quantite n'est pas une valeur valide";
+    set_errors("⚠️Quantite n'est pas une valeur valide", '/../index.php?page=withdrawal');
 }
 
 //Verification si la monnaie existe
@@ -41,7 +41,7 @@ foreach($data as $array){
     }
 }
 if(!$currency_is_good){
-    echo "Monnaie inexistante";
+    set_errors("⚠️Monnaie inexistante", '/../index.php?page=withdrawal');
 }
 
 //Verifier que l'utilisateur a assez d'argent
@@ -56,7 +56,7 @@ if(!$total_amount){
 }
 
 if($total_amount[0]["amount"]<$_POST["amount"]){
-    echo "Vous n'avez pas assez d'argent";
+    set_errors("⚠️Vous n'avez pas assez d'argent", '/../index.php?page=withdrawal');
 }
 
 $amount = $_POST["amount"];
@@ -68,4 +68,5 @@ $data = [$_SESSION['user_id'],$currency_id,$amount];
 $dbManager -> insert($sql, $data);
 
 
+set_errors("Transaction bien reçue", '/../index.php?page=withdrawal');
 ?>

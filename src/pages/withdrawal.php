@@ -1,9 +1,16 @@
-
+<?php 
+require_once __DIR__ . '/../init.php';
+$errors = get_errors();
+ ?>
 <div id="real_body">
-
+            <?php
+            if ($errors !== false) {
+                echo '<p>'.$errors.'</p>';
+            } ?>
             <div id="retrait_back">
+            
                 <div class="soldes_all">
-
+                    
                     <?php
                         
                         $sql=  "SELECT * FROM account WHERE id_user = ?";
