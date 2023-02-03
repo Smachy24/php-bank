@@ -16,7 +16,7 @@ if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
 }
 // Voir si l'email est déjà utilisé ou pas
 
-$recupEmail = $dbManager->select('SELECT * FROM User WHERE email = ?',[$_POST['email']]);
+$recupEmail = $dbManager->select('SELECT * FROM user WHERE email = ?',[$_POST['email']]);
 
 // var_dump($recupEmail);
 
@@ -65,8 +65,8 @@ function generateIban(){
 	return $str;
 }
 
-for($i=0;$i<3;$i++){
-	$sql = "INSERT INTO Account(id_currency,id_user,iban,amount)
+for($i=1;$i<4;$i++){
+	$sql = "INSERT INTO account(id_currency,id_user,iban,amount)
 	VALUES (?,?,?,?)";
 	$data = [$i,$_SESSION['user_id'],generateIban(),0];
 	$dbManager->insert($sql, $data);

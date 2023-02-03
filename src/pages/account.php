@@ -9,8 +9,24 @@
                 <div id="retrait_back04">
                     <form id="retrait" action="">
 
-                        <p id="hello">👋 Bonjour <span>Mathis</span></p>
-                        <p id="titre_retrait02">Vous êtes un : Utilisateur</p>
+                        <p id="hello">👋 Bonjour <span><?php echo $user['fullname']; ?></span></p>
+
+                        <?php
+                        
+                        if ($user['role']==200) {
+                            $name_role = "Manager";
+         
+                        }else if ($user['role']==10) {
+                            $name_role = "Utilisateur vérifié";
+                        
+                        }else if ($user['role']==1000) {
+                            $name_role = "Administrateur";
+                        }else{
+                            $name_role = "Utilisateur non vérifié";
+                        }
+                        ?>
+
+                        <p id="titre_retrait02">Vous êtes un : <span style="color:white; text-decoration=none"><?php echo $name_role; ?></span></p>
 
                         
                         <div id="mes_infos">
@@ -20,13 +36,29 @@
 
                             <div class="infos_user">
 
+                            <?php
+                        
+                            $sql=  "SELECT * FROM account WHERE id_user = ?";
+                            $options = [$_SESSION['user_id']];
+                            $res = $dbManager->select($sql, $options);
+
+                            ?>
+
                                 <p>Mes soldes : 
-                                    <span id="euros">300<span> € |</span></span>
-                                    <span id="dollar">86<span> $ |</span></span>
-                                    <span id="bitcoin">0.243<span> ฿ </span></span>
+                                    <span id="euros"><?php echo $res[0]["amount"]; ?><span> € |</span></span>
+                                    <span id="dollar"><?php echo $res[1]["amount"]; ?><span> $ |</span></span>
+                                    <span id="bitcoin"><?php echo $res[2]["amount"]; ?><span> ฿ </span></span>
                                 </p>
 
-                                <p>IBAN : <span id="iban">FR0298 73898 8779 8797 3232 67 84</span></p>
+                                <?php
+
+                                $sql = "SELECT iban FROM account WHERE id_user = ?";
+                                $options = [$_SESSION['user_id']];
+                                $res = $dbManager->select($sql, $options);
+
+                                ?>
+
+                                <p>IBAN : <span id="iban"><?php echo $res[0]["iban"]; ?></span></p>
                             </div>
                         </div>
 

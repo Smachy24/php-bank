@@ -11,7 +11,7 @@
                     <form id="retrait" action="">
 
                         <p id="hello">🤖 Panneau Administrateur</p>
-                        <p id="titre_retrait02">Connecté en tant que : Utilisateur</p>
+                        <p id="titre_retrait02">Connecté en tant que : <span style="color:white; text-decoration=none"><?php echo $user['fullname']; ?></span></p>
 
                         
 
@@ -142,7 +142,7 @@
                             ON transaction.id_sender=sender.user_id
                             JOIN currency
                             ON transaction.id_currency=currency.currency_id
-                            WHERE type = "DEPO"
+                            WHERE type = "deposit"
                             ORDER BY date';
 
                             $result = $dbManager->select($sql,[]);
@@ -195,7 +195,7 @@
                             ON transaction.id_sender=sender.user_id
                             JOIN currency
                             ON transaction.id_currency=currency.currency_id
-                            WHERE type = "RETRAIT"
+                            WHERE type = "withdrawal"
                             ORDER BY date';
 
                             $result = $dbManager->select($sql,[]);
