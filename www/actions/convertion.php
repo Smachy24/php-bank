@@ -5,23 +5,27 @@ require_once __DIR__ . '/../../src/init.php';
 
 //Verification du formulaire
 if(!isset($_POST["currency"]) || !isset($_POST["amount"]) ||!isset($_POST["new_currency"]) || !isset($_POST["password"])){
-    echo "Formulaire non reçu";
+    set_errors("Formulaire non existant", '/../index.php?page=convertion');
 }
 
 if(empty($_POST["currency"])){
-    echo "Monnaie invalide";
+    set_errors("Monnaie invalide", '/../index.php?page=convertion');
 }
 
 if(empty($_POST["amount"])){
-    echo "Quantite invalide";
+    set_errors("Monnaie invalide", '/../index.php?page=convertion');
 }
 
 if(empty($_POST["new_currency"])){
-    echo "Nouvelle monnaie invalide";
+    set_errors("Nouvelle monnaie invalide", '/../index.php?page=convertion');
 }
 
 if(empty($_POST["password"])){
-    echo "Mot de passe invalide";
+    set_errors("Mot de passe invalide", '/../index.php?page=convertion');
+}
+
+if($_POST["currency"]==$_POST["new_currency"]){
+    set_errors("Vous ne pouvez pas convertir les memes monnaies", '/../index.php?page=convertion');
 }
 
 
@@ -34,18 +38,17 @@ $_POST['new_currency'] = htmlentities($_POST['new_currency'],  ENT_QUOTES | ENT_
 $password = hash('sha256', $_POST['password']);
 
 $user = $dbManager->select('SELECT * FROM user WHERE user_id = ?',[$_SESSION['user_id']]);
-var_dump($user);
 
 // regarde si le password correspond
 
 if ($user[0]['password'] !== $password) {
-	//set_errors('⚠️ Le mot de passe est incorrect', '/../index.php');
+	set_errors("Mot de passe incorrect", '/../index.php?page=convertion');
 
 }
 
 
 if(!is_numeric($_POST['amount'])){
-    echo "Quantite n'est pas une valeur valide";
+    set_errors("Quantité n'est pas une valeur valide", '/../index.php?page=convertion');
 }
 
 
@@ -74,21 +77,20 @@ foreach($currency_data as $array){
 }
 
 if(!$currency_is_good || !$new_currency_is_good){
-    echo "Monnaie inexistante";
+    set_errors("Monnaie inexistante", '/../index.php?page=convertion');
 }
 
 //--Verifier si dans le premier compte (celui où on va retirer l'argent), on a plus d'argent que l'input saisi
 
 $sql = "SELECT account_id,amount FROM account WHERE id_currency = ? AND id_user = ?";
 $first_account = $dbManager->select($sql,[$currency_id, $_SESSION['user_id']]);
-var_dump($first_account);
 
 if(!$first_account){
     echo "Vous n'avez pas de compte avec cette devise";
 }
 
 if($first_account[0]["amount"]<$_POST["amount"]){
-    echo "Vous n'avez pas assez d'argent";
+    set_errors("Vous n'avez pas assez d'argent", '/../index.php?page=convertion');
 }
 
 $amount = $_POST["amount"];
@@ -134,10 +136,11 @@ $sql = "UPDATE Account
 SET amount = ?
 WHERE account_id = ?";
 
-var_dump($second_account);
 
 $data = [$second_account[0]["amount"] + $amount * $new_currency_value /$currency_value ,$second_account[0]["account_id"]];
 
 $dbManager->update($sql, $data);
+
+set_errors("Convertion terminée", '/../index.php?page=convertion');
 
 ?>

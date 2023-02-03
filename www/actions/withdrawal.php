@@ -16,6 +16,7 @@ if(empty($_POST["amount"])){
     echo "Quantite invalide";
 }
 
+
 $_POST['currency'] = htmlentities($_POST['currency'],  ENT_QUOTES | ENT_SUBSTITUTE | ENT_HTML5);
 
 if(!is_numeric($_POST['amount'])){
