@@ -5,27 +5,27 @@ require_once __DIR__ . '/../../src/init.php';
 
 //Verification du formulaire
 if(!isset($_POST["currency"]) || !isset($_POST["amount"]) ||!isset($_POST["new_currency"]) || !isset($_POST["password"])){
-    set_errors("Formulaire non existant", '/../index.php?page=convertion');
+    set_errors("⚠️Formulaire non existant", '/../index.php?page=convertion');
 }
 
 if(empty($_POST["currency"])){
-    set_errors("Monnaie invalide", '/../index.php?page=convertion');
+    set_errors("⚠️Monnaie invalide", '/../index.php?page=convertion');
 }
 
 if(empty($_POST["amount"])){
-    set_errors("Monnaie invalide", '/../index.php?page=convertion');
+    set_errors("⚠️Monnaie invalide", '/../index.php?page=convertion');
 }
 
 if(empty($_POST["new_currency"])){
-    set_errors("Nouvelle monnaie invalide", '/../index.php?page=convertion');
+    set_errors("⚠️Nouvelle monnaie invalide", '/../index.php?page=convertion');
 }
 
 if(empty($_POST["password"])){
-    set_errors("Mot de passe invalide", '/../index.php?page=convertion');
+    set_errors("⚠️Mot de passe invalide", '/../index.php?page=convertion');
 }
 
 if($_POST["currency"]==$_POST["new_currency"]){
-    set_errors("Vous ne pouvez pas convertir les memes monnaies", '/../index.php?page=convertion');
+    set_errors("⚠️Vous ne pouvez pas convertir les memes monnaies", '/../index.php?page=convertion');
 }
 
 
@@ -42,13 +42,13 @@ $user = $dbManager->select('SELECT * FROM user WHERE user_id = ?',[$_SESSION['us
 // regarde si le password correspond
 
 if ($user[0]['password'] !== $password) {
-	set_errors("Mot de passe incorrect", '/../index.php?page=convertion');
+	set_errors("⚠️Mot de passe incorrect", '/../index.php?page=convertion');
 
 }
 
 
 if(!is_numeric($_POST['amount'])){
-    set_errors("Quantité n'est pas une valeur valide", '/../index.php?page=convertion');
+    set_errors("⚠️Quantité n'est pas une valeur valide", '/../index.php?page=convertion');
 }
 
 
@@ -77,7 +77,7 @@ foreach($currency_data as $array){
 }
 
 if(!$currency_is_good || !$new_currency_is_good){
-    set_errors("Monnaie inexistante", '/../index.php?page=convertion');
+    set_errors("⚠️Monnaie inexistante", '/../index.php?page=convertion');
 }
 
 //--Verifier si dans le premier compte (celui où on va retirer l'argent), on a plus d'argent que l'input saisi
@@ -90,7 +90,7 @@ if(!$first_account){
 }
 
 if($first_account[0]["amount"]<$_POST["amount"]){
-    set_errors("Vous n'avez pas assez d'argent", '/../index.php?page=convertion');
+    set_errors("⚠️Vous n'avez pas assez d'argent", '/../index.php?page=convertion');
 }
 
 $amount = $_POST["amount"];
