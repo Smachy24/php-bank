@@ -26,3 +26,32 @@
     <?php gen_table_structure("withdrawal") ?>
 
 
+    <h1>Pannel Validation</h1>
+    <section id="manager_table_section">
+        <table>
+            <thead>
+                <tr>
+                    <th>Utilisateur</th>
+                    <th>role</th>
+                    <th>email</th>
+                    <th>date création</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php gen_role_table() ?>
+            </tbody>
+        </table>
+    </section>
+
+    <?php 
+    
+    
+    
+    
+    
+    
+    
+    ?>
+
+
