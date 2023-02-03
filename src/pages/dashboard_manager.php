@@ -8,6 +8,11 @@
         header('Location: /index.php?page=login');
         die();
     }
+    elseif($user['role'] < 200)
+    {
+        header('Location: /index.php?page=login');
+        die();
+    }
 
     $errors = get_errors();
 ?>
