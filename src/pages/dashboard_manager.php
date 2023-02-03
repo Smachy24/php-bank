@@ -1,5 +1,3 @@
-
-
 <?php 
     //require_once __DIR__ . '/utils/gen_manager_table.php';
     // require_once __DIR__ . '/../src/utils/gen_manager_table.php';
@@ -17,41 +15,61 @@
     $errors = get_errors();
 ?>
 
-<h1>Pannel Manager</h1>
-<h3> Bonjour Manager <?php echo $user['fullname']; ?> ! </h3>
+    <?php
+    require_once __DIR__ .'/../init.php';
+    $errors = get_errors();
+    if ($errors !== false) {
+        echo '<p>'.$errors.'</p>';
+    } ?>
 
-    <h2>tableau demande de dépot</h2>
-    <?php gen_table_structure("deposit") ?>
-    <h2>tableau demande de retrait</h2>
-    <?php gen_table_structure("withdrawal") ?>
+    <div id="real_body">
 
+                <div id="retrait_back06">
+                    <form id="retrait" action="">
 
-    <h1>Pannel Validation</h1>
-    <section id="manager_table_section">
-        <table>
-            <thead>
-                <tr>
-                    <th>Utilisateur</th>
-                    <th>role</th>
-                    <th>email</th>
-                    <th>date création</th>
-                </tr>
-            </thead>
+                        <p id="hello">👨🏻‍⚖️ Panneau Manager</p>
+                        <p id="titre_retrait02">Connecté en tant que : <span style="color:white; text-decoration=none"><?php echo $user['fullname']; ?></span></p>
 
-            <tbody>
-                <?php gen_role_table() ?>
-            </tbody>
-        </table>
-    </section>
+                        <div id="mon_activite03">
 
-    <?php 
+                            <p style="margin-left:2%; margin-top:1%">🔼 <span class="span_titre_infos">Les demandes de dépôt :</span></p>
+                            <?php gen_table_structure("deposit") ?>
+
+                        </div>
+
+                        <div id="mon_activite03">
+
+                            <p style="margin-left:2%; margin-top:1%">🔽 <span class="span_titre_infos">Les demandes de retrait :</span></p>
+                            <?php gen_table_structure("withdrawal") ?>
+
+                        </div>
+
+                        <div id="mon_activite03">
+
+                            <p style="margin-left:2%; margin-top:1%">✅ ⛔️ <span class="span_titre_infos">Vérifier ou bannir les utilisateurs :</span></p>
+                            <table class="tableau-style">
+                                <thead class="tableau-style">
+                                    <tr class="name_column">
+                                        <th>Utilisateur</th>
+                                        <th>role</th>
+                                        <th>email</th>
+                                        <th>date création</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php gen_role_table() ?>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+            </div>
+    </div>
     
     
     
     
     
     
-    
-    ?>
-
-
+ 
