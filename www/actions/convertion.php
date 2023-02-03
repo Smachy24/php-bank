@@ -33,7 +33,7 @@ $_POST['new_currency'] = htmlentities($_POST['new_currency'],  ENT_QUOTES | ENT_
 
 $password = hash('sha256', $_POST['password']);
 
-$user = $dbManager->select('SELECT * FROM user WHERE user_id = ?',[1]);
+$user = $dbManager->select('SELECT * FROM user WHERE user_id = ?',[$_SESSION['user_id']]);
 var_dump($user);
 
 // regarde si le password correspond
@@ -64,6 +64,7 @@ foreach($currency_data as $array){
     if($array["name"]==$_POST['currency']){
         $currency_is_good = true;
         $currency_id = $array["currency_id"];
+        $currency_value = $array["value"];
     }
     if($array["name"]==$_POST['new_currency']){
         $new_currency_is_good = true;
@@ -78,8 +79,8 @@ if(!$currency_is_good || !$new_currency_is_good){
 
 //--Verifier si dans le premier compte (celui où on va retirer l'argent), on a plus d'argent que l'input saisi
 
-$sql = "SELECT account_id,amount FROM account WHERE id_currency = ? AND id_user = 1";
-$first_account = $dbManager->select($sql,[$currency_id]);
+$sql = "SELECT account_id,amount FROM account WHERE id_currency = ? AND id_user = ?";
+$first_account = $dbManager->select($sql,[$currency_id, $_SESSION['user_id']]);
 var_dump($first_account);
 
 if(!$first_account){
@@ -94,8 +95,8 @@ $amount = $_POST["amount"];
 
 //-- Verifier si le deuxieme compte avec la monnaie du 2eme input currency existe
 
-$sql = "SELECT account_id,amount FROM account WHERE id_currency = ? AND id_user = 1";
-$second_account = $dbManager->select($sql,[$new_currency_id]);
+$sql = "SELECT account_id,amount FROM account WHERE id_currency = ? AND id_user = ?";
+$second_account = $dbManager->select($sql,[$new_currency_id, $_SESSION['user_id']]);
 
 if(!$second_account){
     echo "Vous n'avez pas de compte avec cette devise";
@@ -105,7 +106,7 @@ if(!$second_account){
 
 $sql = "INSERT INTO transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
 VALUES (?,?,?,?,?,?)";
-$data = [1,1,-1, $currency_id, "withdrawal", $amount];
+$data = [$_SESSION['user_id'],$_SESSION['user_id'],-1, $currency_id, "withdrawal", $amount];
 
 $dbManager -> insert($sql, $data);
 
@@ -113,7 +114,7 @@ $dbManager -> insert($sql, $data);
 
 $sql = "INSERT INTO transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
 VALUES (?,?,?,?,?,?)";
-$data = [1,1,-1, $new_currency_id, "deposit", $amount * $new_currency_value ];
+$data = [$_SESSION['user_id'],$_SESSION['user_id'],-1, $new_currency_id, "deposit", $amount * $new_currency_value ];
 
 $dbManager -> insert($sql, $data);
 
@@ -123,7 +124,7 @@ $sql = "UPDATE Account
 SET amount = ?
 WHERE account_id = ?";
 
-$data = [$first_account[0]["amount"] - $amount ,$first_account[0]["account_id"]];
+$data = [$first_account[0]["amount"] - $amount  ,$first_account[0]["account_id"]];
 
 $dbManager->update($sql, $data);
 
@@ -135,7 +136,7 @@ WHERE account_id = ?";
 
 var_dump($second_account);
 
-$data = [$second_account[0]["amount"] + $amount * $new_currency_value ,$second_account[0]["account_id"]];
+$data = [$second_account[0]["amount"] + $amount * $new_currency_value /$currency_value ,$second_account[0]["account_id"]];
 
 $dbManager->update($sql, $data);
 
