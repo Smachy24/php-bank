@@ -77,7 +77,7 @@ $dbManager->update($sql,[$new_money ,$result['id_currency'], $result['id_user'] 
 
 
 
-//TODO généré une transaction avec toutes ces donné
+//TODO généré une transaction avec toutes ces données
 
 //-- Faire une premiere transaction de depot
 $sql = "INSERT INTO transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
