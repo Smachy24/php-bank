@@ -99,8 +99,7 @@ $data = [$sender_id,$_SESSION['user_id'],-1, $currency_id, "withdrawal", $amount
 $dbManager -> insert($sql, $data);
 
 //-- Faire une deuxieme transaction de depos
-echo "------------------";
-echo "aaaaaaaa".$sender_id;
+
 
 $sql = "INSERT INTO transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
 VALUES (?,?,?,?,?,?)";
