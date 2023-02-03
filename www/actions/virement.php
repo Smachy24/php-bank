@@ -79,11 +79,13 @@ if($total_amount[0]["amount"]<$_POST["amount"]){
 
 $amount = $_POST["amount"];
 
-$sql = "SELECT account_id FROM account WHERE iban = ? ";
+$sql = "SELECT id_user,account_id FROM account WHERE iban = ? ";
 $data = [$_POST["iban"]];
 $data_user = $dbManager->select($sql, $data);
 
 var_dump($data_user);
+
+$sender_id = $data_user[0]["id_user"];
 
 $receiver_id = $data_user[0]["account_id"];
 
@@ -92,15 +94,17 @@ $receiver_id = $data_user[0]["account_id"];
 
 $sql = "INSERT INTO transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
 VALUES (?,?,?,?,?,?)";
-$data = [$receiver_id,$_SESSION['user_id'],-1, $currency_id, "withdrawal", $amount];
+$data = [$sender_id,$_SESSION['user_id'],-1, $currency_id, "withdrawal", $amount];
 
 $dbManager -> insert($sql, $data);
 
 //-- Faire une deuxieme transaction de depos
+echo "------------------";
+echo "aaaaaaaa".$sender_id;
 
 $sql = "INSERT INTO transaction (id_receiver, id_sender, id_manager, id_currency, type, amount)
 VALUES (?,?,?,?,?,?)";
-$data = [$_SESSION['user_id'],$receiver_id,-1, $currency_id, "deposit", $amount];
+$data = [$_SESSION['user_id'],$sender_id,-1, $currency_id, "deposit", $amount];
 
 $dbManager -> insert($sql, $data);
 

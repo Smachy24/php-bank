@@ -98,9 +98,9 @@
                             JOIN currency 
                             ON TRANSACTION.id_currency = currency.currency_id
                             
-                            ORDER BY date DESC LIMIT 10';
+                            WHERE Transaction.id_receiver = ? OR TRANSACTION.id_sender = ? ORDER BY date DESC LIMIT 10'; 
 
-                            $result = $dbManager->select($sql,[]);
+                            $result = $dbManager->select($sql,[$_SESSION['user_id'],$_SESSION['user_id']]);
 
 
                             foreach ($result as $row) {
