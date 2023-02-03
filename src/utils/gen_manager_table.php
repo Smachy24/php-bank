@@ -61,7 +61,32 @@
         }    
     }
 
+    function gen_role_table()
+    {
+        global $db;
+        global $dbManager;        
 
+        $sql = 'SELECT user_id, fullname, role, email, created_at
+                FROM user
+                WHERE role = 1
+                ORDER BY created_at';
+
+
+        $req = $db->prepare($sql);
+        $req->execute();
+        $result = $req->fetchAll();
+
+        foreach ($result as $row) {
+            echo '<tr>
+                    <th> ' . $row["fullname"] . '  </th>
+                    <th> ' . $row["role"] . ' </th>
+                    <th> ' . $row["email"] . ' </th>
+                    <th> ' . $row["created_at"] . ' </th>
+                    <th> <a href="/actions/role_validation.php?verification_status=verified&id_user_to_check='.$row['user_id'].'"> verifier </a> </th>
+                    <th> <a href="/actions/role_validation.php?verification_status=ban&id_user_to_check='.$row['user_id'].'"> ban </a> </th>
+                </tr>';
+        }    
+    }
 
     function genScores($myTable, $mySorting)
     {
@@ -124,9 +149,9 @@
     }
 ?>
 
-
+<!-- where id n'est pas egale a pas session user_id -->
 <!-- un bouton peut avoir une value -->
-
+<!-- on ne peut pas ban un admin ou un manager  -->
 
 
 
