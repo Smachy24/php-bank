@@ -2,7 +2,7 @@
 
 ## Groupe
 Diego CARVALHO DOS SANTOS
-Marco STOJANOVIC
+Marko STOJANOVIC
 Mathis RENAUDIN
 Khaled KOUADRIA 
 
