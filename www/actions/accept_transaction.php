@@ -8,7 +8,7 @@ require_once __DIR__ . '/../../src/init.php';
 
 
 //vérifier si user est un manager ou admin
-if ($user['role'] <= 200) {
+if ($user['role'] < 200) {
     header('Location: /index.php?page=home');
     die();
 }

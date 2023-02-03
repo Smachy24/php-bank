@@ -5,11 +5,9 @@ require_once __DIR__ . '/../src/init.php';
 $page_titles = [
 	'home' => 'Accueil',
 	'login' => 'Se connecter',
-	'register' => 'S\'inscire',
+	'register' => 'S\'inscrire',
     'dashboard_manager' => 'DashBoard Manager',
-
     'dashboard_admin' => 'DashBoard Admin',
-
     'deposit'=>"Dépôt",
     'withdrawal'=>"Retrait",
     'transfer' =>"Virement",
